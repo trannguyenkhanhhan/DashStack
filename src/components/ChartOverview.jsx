@@ -21,7 +21,8 @@ const ChartOverview = ({ salesDataForApi }) => {
 
       try {
         const payload = { contents: [{ role: "user", parts: [{ text: prompt }] }] };
-        const apiKey = 'AIzaSyBREnPqs4LV6ZTBhZhtChlkH_Tc7iwWSu8' 
+        debugger;
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY; 
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
         const response = await fetch(apiUrl, {
