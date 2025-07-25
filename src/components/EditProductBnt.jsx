@@ -42,7 +42,8 @@ function EditProductBnt({ product, onClose, onUpdate }) {
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40">
       <div className="bg-[#1e2430] rounded-xl p-6 w-[90%] max-w-md shadow-lg">
         <h2 className="text-white font-semibold mb-4">Edit Product</h2>
-
+        <div>
+        <p className="m-2">Product Name:</p>
         <input
           name="product_name"
           value={formData.product_name}
@@ -50,8 +51,11 @@ function EditProductBnt({ product, onClose, onUpdate }) {
           placeholder="Product Name"
           className="w-full bg-gray-700 text-white placeholder-gray-400 mb-2 px-3 py-2 rounded"
         />
-
-        <input
+        </div>
+        
+      <div>
+      <p className="m-2">Product Price:</p>
+      <input
           name="price"
           value={formData.price}
           onChange={handleChange}
@@ -59,14 +63,19 @@ function EditProductBnt({ product, onClose, onUpdate }) {
           type="number"
           className="w-full bg-gray-700 text-white placeholder-gray-400 mb-2 px-3 py-2 rounded"
         />
-
-        <input
+      </div>
+        
+      <div>
+      <p className="m-2">Image:</p>
+      <input
           name="img"
           value={formData.img}
           onChange={handleChange}
           placeholder="Image URL"
           className="w-full bg-gray-700 text-white placeholder-gray-400 mb-4 px-3 py-2 rounded"
         />
+      </div>
+        
 
         <div className="flex justify-between mt-4">
           <button

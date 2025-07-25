@@ -22,7 +22,7 @@ const OrderFilterBar = ({
         value={dateFilter}
         onChange={(e) => setDateFilter(e.target.value)}
       >
-        <option className="rounded-md" value="">Date</option>
+        <option className="rounded-md " value="">Date</option>
         <option value="newest">Newest to Oldest</option>
         <option className="rounded-md  "  value="oldest">Oldest to Newest</option>
       </select>

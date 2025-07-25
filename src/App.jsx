@@ -13,14 +13,15 @@ import SignUpPage from './components/SignUpPage';
 import PricingPage from './components/PricingPage';
 import OrderListsPage from './components/OrderListsPage';
 import LoginPage from './components/LoginPage';
+import CalendarPage from './components/CalendarPage';
 
 const NotFoundPage = () => (
   <div className="p-6 bg-slate-900 text-white min-h-full">
-    <h1 className="text-3xl font-semibold text-gray-200">404 - Không tìm thấy trang</h1>
-    <p className="mt-2 text-gray-400">Rất tiếc, trang bạn tìm kiếm không tồn tại.</p>
+    <h1 className="text-3xl font-semibold text-gray-200">404 - Page not found</h1>
+    <p className="mt-2 text-gray-400">Sorry, the page you are looking for does not exist.</p>
     <p className="mt-4 text-gray-400">
-      Vui lòng kiểm tra lại địa chỉ hoặc quay về{' '}
-      <a href="/" className="text-blue-400 hover:underline">Trang chủ</a>.
+    Please check the address again or return{' '}
+      <a href="/" className="text-blue-400 hover:underline">Home</a>.
     </p>
   </div>
 );
@@ -83,6 +84,7 @@ function AppRoutes() {
             <Route path="/pricing" element={<PricingPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/invoices" element={<InvoicePage />} />
+            <Route path="/calendar" element={<CalendarPage />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </main>

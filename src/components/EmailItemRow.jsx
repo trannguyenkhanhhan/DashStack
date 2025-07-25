@@ -1,13 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiStar } from 'react-icons/fi';
 import { AiFillStar } from 'react-icons/ai';
+import ApiService from '../apis/ApiService';
 
-const EmailItemRow = ({ email }) => {
-  const [isChecked, setIsChecked] = useState(false);
+const EmailItemRow = ({ email, isChecked, onCheckChange, onDelete,  onClick  }) => {
   const [starred, setStarred] = useState(email.star === "True");
 
-  const handleCheck = (e) => setIsChecked(e.target.checked);
-  const handleClickStar = () => setStarred(!starred);
+  useEffect(() => {
+    setStarred(email.star === "True");
+  }, [email.star]);
+
+  const handleCheck = (e) => {
+    e.stopPropagation();
+    if (onCheckChange) {
+      onCheckChange(email._id, e.target.checked);
+    }
+  };
+
+  const handleClickStar = async () => {
+    e.stopPropagation();
+    const newStar = !starred;
+    setStarred(newStar);
+
+    try {
+      await ApiService.callApiAsync(
+        "inbox",
+        "PUT",
+        { ...email, star: newStar ? "True" : "False" },
+        email._id
+      );
+    } catch (error) {
+      console.error("Failed to update star:", error);
+      setStarred(!newStar);
+    }
+  };
 
   const getLabelColor = (label = '') => {
     const colorMap = {
@@ -21,6 +47,7 @@ const EmailItemRow = ({ email }) => {
 
   return (
     <div
+      onClick={() => onClick && onClick(email)}
       className={`flex items-center justify-between px-4 py-3 border-b cursor-pointer ${
         isChecked ? 'bg-gray-600' : 'hover:bg-gray-600'
       }`}

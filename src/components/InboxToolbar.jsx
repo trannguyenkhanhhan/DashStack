@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiSearch, FiTrash2, FiInfo, FiArchive } from 'react-icons/fi';
 
-const InboxToolbar = () => {
+const InboxToolbar = ({ onDelete }) => {
   return (
     <div className="flex items-center justify-between px-4 py-3 rounded-t-md bg-[#273142]">
       <div className="relative w-1/2">
@@ -15,7 +15,11 @@ const InboxToolbar = () => {
       <div className="flex items-center gap-4 text-gray-500">
         <FiArchive className="cursor-pointer" />
         <FiInfo className="cursor-pointer" />
+        <button onClick={onDelete} className='p-0'>
+
         <FiTrash2 className="cursor-pointer" />
+        </button>
+        
       </div>
     </div>
   );

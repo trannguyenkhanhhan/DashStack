@@ -1,7 +1,9 @@
 import React from "react";
 
 const InvoiceDetail = ({ buyer }) => {
-  const invoiceData = buyer.invoice || {
+  if (!buyer) return null;
+
+  const invoiceData = {
     from: {
       name: "Virginia Walker",
       address: "9694 Krajcik Locks Suite 635",
@@ -10,14 +12,9 @@ const InvoiceDetail = ({ buyer }) => {
       name: buyer.name,
       address: buyer.address,
     },
-    date: "12 Nov 2019",
-    due: "25 Dec 2019",
-    items: [
-      { id: 1, description: "Children Toy", quantity: 2, cost: 20 },
-      { id: 2, description: "Makeup", quantity: 2, cost: 50 },
-      { id: 3, description: "Asus Laptop", quantity: 5, cost: 100 },
-      { id: 4, description: "Iphone X", quantity: 4, cost: 1000 },
-    ],
+    date: buyer.date,
+    due: buyer.due,
+    items: buyer.item || [],
   };
 
   const total = invoiceData.items.reduce(
@@ -27,7 +24,6 @@ const InvoiceDetail = ({ buyer }) => {
 
   return (
     <div className="text-white">
-
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6 text-sm">
         <div>
           <p className="text-gray-400">Invoice From :</p>
@@ -73,18 +69,16 @@ const InvoiceDetail = ({ buyer }) => {
         </table>
       </div>
 
-
       <div className="flex justify-end mt-4 text-lg font-semibold">
         <p>Total = <span className="text-white">${total}</span></p>
       </div>
-
 
       <div className="flex justify-end gap-4 mt-6">
         <button className="bg-gray-700 text-white  px-4 py-2 rounded-lg shadow hover:bg-gray-500 transition">
           Print
         </button>
         <button className="bg-orange-500 text-white px-6 py-2 rounded-lg shadow hover:bg-orange-600 transition flex items-center gap-2">
-          Send 
+          Send
         </button>
       </div>
     </div>
